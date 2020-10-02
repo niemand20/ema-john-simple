@@ -73,7 +73,7 @@ const Shop = () => {
                  </Link>
                 </Cart>
             </div>
-            Router
+            
             
         </div>
     );

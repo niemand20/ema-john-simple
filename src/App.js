@@ -16,6 +16,8 @@ import Inventory from './components/Inventory/Inventory';
 import NotFound from './components/Notfound/NotFound';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Product from './components/Product/Product';
+import LogIn from './components/Log-In/LogIn';
+import Shipment from './components/Shipment/Shipment';
 
 
 
@@ -39,6 +41,12 @@ function App() {
           </Route> */}
           <Route  path = '/inventory'>
             <Inventory></Inventory>
+          </Route>
+          <Route  path = '/login'>
+            <LogIn></LogIn>
+          </Route>
+          <Route  path = '/shipment'>
+            <Shipment></Shipment>
           </Route>
           <Route exact path = '/'>
             <Shop></Shop>
