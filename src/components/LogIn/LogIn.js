@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebaseConfig';
+import { useContext } from 'react';
+import { userContext } from '../../App';
+import { useHistory, useLocation } from 'react-router-dom';
 
 
 firebase.initializeApp(firebaseConfig);
@@ -20,6 +23,12 @@ function LogIn() {
 
 
   });
+
+const [loggedInUser,setloggedInUser] = useContext(userContext);
+const history = useHistory();
+const location = useLocation();
+let { from } = location.state || { from: { pathname: "/" } };
+
   const provider = new firebase.auth.GoogleAuthProvider();
   const fbProvider = new firebase.auth.FacebookAuthProvider();
 
@@ -131,6 +140,8 @@ const handleSubmit =(e) =>{
       newUserInfo.success = true;
 
       setUser(newUserInfo);
+      setloggedInUser(newUserInfo);
+      history.replace(from);
       console.log('signed in user info', res.user)
     })
   
@@ -186,7 +197,7 @@ const updateUserName = name=>{
 }
 
   return (
-    <div className="App">
+    <div style = {{textAlign:'center'}}>
       {
         user.isSignedIn?<button onClick = {handleSignOut}>Sign Out</button> :<button onClick = {handleSignIn}>Sign In</button>
       }
